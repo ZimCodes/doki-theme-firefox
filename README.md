@@ -1,5 +1,8 @@
 ## The Doki Theme: Firefox
 
+> [!IMPORTANT]
+> **This repo was created to provide maintenance for the main project repo. [doki-theme/doki-theme-firefox](https://github.com/doki-theme/doki-theme-firefox)
+
 ## Quick Theme Preview
 
 ![Preview](./readmeAssets/screens/preview.png)

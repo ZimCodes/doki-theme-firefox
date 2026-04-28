@@ -22,6 +22,7 @@ classes/
 src/test/resources/
 
 masterThemes/
+doki-build-source/
 
 *.pyc
 .ipynb_checkpoints/

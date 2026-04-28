@@ -1,8 +1,8 @@
 {
-  "name": "Doki Theme for Firefox (Fork)",
+  "name": "Doki Theme for F.F. (Fork)",
   "short_name": "Doki Theme (Fork)",
-  "version": "88.3.0",
-  "description": "Cute anime character themes for Firefox.",
+  "version": "88.3.2",
+  "description": "Cute anime character themes.",
   "manifest_version": 2,
   "icons": {
     "48": "icons/doki-theme-logo@48.png",
@@ -38,7 +38,8 @@
   "browser_specific_settings": {
     "gecko": {
       "strict_min_version": "95.0",
-      "id": "{9a72b801-6c8b-40fc-b419-51af60fa4b7b}"
+      "id": "{9a72b801-6c8b-40fc-b419-51af60fa4b7b}",
+      "update_url": "https://github.com/ZimCodes/doki-theme-firefox/refs/heads/main/update.json"
     }
   }
 }

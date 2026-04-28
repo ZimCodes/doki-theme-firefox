@@ -1,0 +1,14 @@
+{
+  "addons":
+  {
+ "{9a72b801-6c8b-40fc-b419-51af60fa4b7b}": {
+      "updates": [
+        {
+          "version": "v1.0.0",
+          "update_link": "https://github.com/ZimCodes/doki-theme-firefox/releases/download/v1.0.0/doki-88.3.1.xpi"
+        }
+      ]
+    }
+  }
+
+}

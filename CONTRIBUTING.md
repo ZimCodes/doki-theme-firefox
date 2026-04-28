@@ -39,13 +39,13 @@ I heavily use Node/Typescript to build all of my themes, and I have a fair amoun
 Just run
 
 ```shell
-yarn global add typescript ts-node nodemon
+yarn global add typescript tsx
 ```
 
 Note: if you already have these globally installed please make sure you are up to date!
 
 ```shell
-yarn global upgrade typescript ts-node
+yarn global upgrade typescript tsx
 ```
 
 **Get the Master Themes**
@@ -53,21 +53,31 @@ yarn global upgrade typescript ts-node
 Since this theme suite expands across multiple platforms, in order to maintain consistency of the look and feel across
 platforms, there is a [central theme definition repository](https://github.com/doki-theme/doki-master-theme)
 
-This repository needs to be cloned as a directory called `masterThemes`. If you are running Linux/MacOS, you can
-run `getMasterThemes.sh` located at the root of this repository. This script does exactly what is required, if you are
-on Windows, have you considered Linux? Just kidding (mostly), you'll need to run this command
+This repository needs to be cloned as a directory called `masterThemes`. This is handled for you when you run 
+`getRepoDependencies.sh` located at the root of this repository.
 
 ```shell
-git clone https://github.com/doki-theme/doki-master-theme.git masterThemes
+git clone https://github.com/ZimCodes/doki-master-theme.git masterThemes
 ```
 
 **Get the Assets**
 
 In the same parent folder as `doki-theme-firefox` you'll need to clone the `doki-theme-assets` repository, that way the
-build script can copy the correct assets so they can be bundled with the plugin.
+build script can copy the correct assets so they can be bundled with the plugin. `getRepoDependencies.sh` handles this
+for you if you decide to run it.
 
 ```shell
-git clone https://github.com/doki-theme/doki-theme-assets.git
+git clone https://github.com/ZimCodes/doki-theme-assets.git
+```
+
+**Get the Doki Build Source**
+
+Doki build source also needs to be cloned into `doki-theme-firefox` alongside `masterThemes`. This repo contains the
+building blocks for constructing all doki themes. Using `getRepoDependencies.sh` also handles cloning this repo in the
+correct location.
+
+```shell
+git clone https://github.com/ZimCodes/doki-build-source
 ```
 
 Your directory structure should have at least these directories, (there will probably be more, but these are the
@@ -79,6 +89,7 @@ your-workspace/
 ├─ doki-theme-firefox/
 │  ├─ masterThemes/
 │  ├─ buildSrc/
+│  ├─ doki-build-source/
 ```
 
 Inside the `masterThemes` directory, you'll want to make sure all the dependencies are available to the build scripts.
@@ -234,4 +245,3 @@ This script does all the annoying tedious stuff such as:
   place. See [Web Specifics](#web-specifics) for more details.
 
 [Here is an example pull request that captures all the artifacts from the development process of imported themes](https://github.com/doki-theme/doki-theme-web/pull/46)
-.

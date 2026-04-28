@@ -3,20 +3,20 @@
 ### Required Software
 
 - Node v14.17.1
-- npm v6.14.13
+- yarn v4.14.1
 
 ## Setup
 
 - At root of source code provided, run:
 
 ```shell
-npm install
+yarn yarnAndBuildDeps
 ```
 
 After command complete, run
 
 ```shell
-npm run build
+yarn build:source
 ```
 
 Upon completion, all contents of the `./dist/` directory contains the contents of the submitted add-on.

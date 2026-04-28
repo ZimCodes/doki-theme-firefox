@@ -16,7 +16,8 @@
   "scripts": {
     "start": "yarn dlx web-ext run --devtools --firefox \"C:\\Program Files\\LibreWolf\\librewolf.exe\" --source-dir ./dist/",
     "watch": "webpack --config webpack.dev.js --watch",
-    "build": "webpack --config webpack.prod.js && cd ./dist && yarn dlx web-ext build",
+    "build:source":"webpack --config webpack.prod.js",
+    "build:ext": "yarn build:source && cd ./dist && yarn dlx web-ext build",
     "check:prettier": "yarn dlx prettier --check .",
     "check:eslint": "yarn dlx eslint ./src --ext .js,.jsx,.ts,.tsx",
     "lint": "yarn dlx prettier --write . && yarn dlx eslint ./src --ext .js,.jsx,.ts,.tsx --fix",

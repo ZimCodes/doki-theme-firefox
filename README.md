@@ -30,6 +30,12 @@
 
 - Mozilla Firefox 95 or above
 
+## How to install
+
+1. In the search bar, type `about:addons`.
+2. Click on the ⚙️ _(cog wheel)_ icon
+3. Select from dropdown menu, `Install Add-on From File...` and select the extension file _(`xpi`)_.
+
 # Usage
 
 You can configure the extension by opening the popup menu & clicking:

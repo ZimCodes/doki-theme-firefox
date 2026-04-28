@@ -19,20 +19,13 @@
 - [Miscellaneous](#miscellaneous)
   - [Contributing](#contributing)
   - [Reviewing](#reviewing)
-  - [Theme Requests](#theme-requests)
   - [Helping the community](#enjoying-the-themes)
-  - [Feature Requests](#contributions)
 
 # Installation
 
 ### Prerequisites
 
 - Mozilla Firefox 95 or above
-
-### Mozilla's Add-on Store
-
-You can install the extension from
-the [FireFox addon marketplace.](https://addons.mozilla.org/en-US/firefox/addon/doki-theme-for-firefox/)
 
 # Usage
 
@@ -104,6 +97,8 @@ theme.
 
 **Inject Themed Scrollbar**: injects styles to change the scrollbar to match the active tab's theme.
 
+**Discreet Mode**: removes doki logos and doki characters. Keeps the doki logo for toolbar, though.
+
 # Miscellaneous
 
 ## Contributing
@@ -116,20 +111,8 @@ then you'll want to check out the [CONTRIBUTING.md](./CONTRIBUTING.md) for instr
 If you are currently reviewing this plugin then you'll want to check out the [REVIEWER_README.md](./REVIEWER_README.md)
 for instructions on what is needed complete the review.
 
-## Theme Requests
-
-If you want your main squeeze to be featured in the Doki Theme suite, feel free
-to [submit a theme request](https://github.com/doki-theme/doki-master-theme/issues).
-
 ## Enjoying the themes?
 
 Great! I am glad you like it!
 
 Be sure to ⭐ and share it with other weebs!
-
-## Contributions?
-
-I think your voice needs to be heard! You probably have good ideas, so feel free to submit your feedback
-as [an issue](https://github.com/doki-theme/doki-theme-jupyter/issues/new).
-
-Help make this plugin better!

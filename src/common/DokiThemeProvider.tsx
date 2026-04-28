@@ -113,9 +113,9 @@ const DokiThemeProvider: FC<PropsWithChildren<Props>> = ({ children }) => {
   );
 
   return (
-    <ThemeContext.Provider value={themeContext}>
+    <ThemeContext value={themeContext}>
       {children}
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 };
 

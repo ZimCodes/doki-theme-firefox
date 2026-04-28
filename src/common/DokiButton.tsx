@@ -12,6 +12,7 @@ const DokiButton: FC<
       HTMLButtonElement
     >
 > = (props) => {
+  const dokiThemeCtx = React.useContext(ThemeContext);
   function createStyles(theme: FireFoxDokiTheme): CSSProperties {
     const colors = theme.colors;
     return props.variant === "primary"
@@ -25,29 +26,25 @@ const DokiButton: FC<
         };
   }
   return (
-    <ThemeContext.Consumer>
-      {({ theme }) => (
-        <>
-          <button
-            {...props}
-            style={{
-              ...props.style,
-              padding: "0.5rem 1rem",
-              border: `solid ${theme.colors.borderColor} 1px`,
-              borderRadius: 0,
-              fontWeight: 500,
-              cursor: "pointer",
-              ...(props.disabled
-                ? { opacity: 0.5, cursor: "not-allowed" }
-                : {}),
-              ...createStyles(theme),
-            }}
-          >
-            {props.children}
-          </button>
-        </>
-      )}
-    </ThemeContext.Consumer>
+    <>
+      <button
+        {...props}
+        style={{
+          ...props.style,
+          padding: "0.5rem 1rem",
+          border: `solid ${dokiThemeCtx.theme.colors.borderColor} 1px`,
+          borderRadius: 0,
+          fontWeight: 500,
+          cursor: "pointer",
+          ...(props.disabled
+            ? { opacity: 0.5, cursor: "not-allowed" }
+            : {}),
+          ...createStyles(dokiThemeCtx.theme),
+        }}
+      >
+        {props.children}
+      </button>
+    </>
   );
 };
 

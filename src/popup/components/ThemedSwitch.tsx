@@ -15,21 +15,18 @@ type excludedHTMLInputProps =
   | keyof ReactSwitchProps;
 type allowedHTMLinputProps = Omit<htmlInputProps, excludedHTMLInputProps>;
 const ThemedSwitch: FC<ReactSwitchProps & allowedHTMLinputProps> = (props) => {
+  const dokiThemeCtx = React.useContext(ThemeContext);
   return (
-    <ThemeContext.Consumer>
-      {({ theme }) => (
-        <Switch
-          {...props}
-          uncheckedIcon={false}
-          checkedIcon={false}
-          offColor={theme.colors.disabledColor}
-          onColor={theme.colors.accentColor}
-          onHandleColor={theme.colors.buttonColor}
-          offHandleColor={theme.colors.buttonColor}
-          activeBoxShadow={`0 0 2px 3px ${theme.colors.accentColor}`}
-        />
-      )}
-    </ThemeContext.Consumer>
+    <Switch
+      {...props}
+      uncheckedIcon={false}
+      checkedIcon={false}
+      offColor={dokiThemeCtx.theme.colors.disabledColor}
+      onColor={dokiThemeCtx.theme.colors.accentColor}
+      onHandleColor={dokiThemeCtx.theme.colors.buttonColor}
+      offHandleColor={dokiThemeCtx.theme.colors.buttonColor}
+      activeBoxShadow={`0 0 2px 3px ${dokiThemeCtx.theme.colors.accentColor}`}
+    />
   );
 };
 

@@ -16,6 +16,7 @@ export interface PluginFeatures {
   showWidget: boolean;
   injectScrollbars: boolean;
   injectSelection: boolean;
+  isDiscreet: boolean;
 }
 
 export interface PluginFeatureContext {
@@ -28,6 +29,7 @@ export const defaultFeatures: PluginFeatures = {
   showWidget: true,
   injectSelection: false,
   injectScrollbars: false,
+  isDiscreet: false,
 };
 
 export const FeatureContext = React.createContext<PluginFeatureContext>({
@@ -56,6 +58,7 @@ const FeatureProvider: FC<PropsWithChildren<Props>> = ({ children }) => {
       showWidget: context.showWidget,
       injectSelection: context.injectSelection,
       injectScrollbars: context.injectScrollbars,
+      isDiscreet: context.isDiscreet,
     });
     browser.runtime.sendMessage(featureSetEvent);
   };
@@ -66,6 +69,7 @@ const FeatureProvider: FC<PropsWithChildren<Props>> = ({ children }) => {
         showWidget: setting.showWidget,
         injectScrollbars: setting.injectScrollbars,
         injectSelection: setting.injectSelection,
+        isDiscreet: setting.isDiscreet,
       });
       setInitialized(true);
     });
@@ -81,9 +85,9 @@ const FeatureProvider: FC<PropsWithChildren<Props>> = ({ children }) => {
   );
 
   return (
-    <FeatureContext.Provider value={featureContext}>
+    <FeatureContext value={featureContext}>
       {children}
-    </FeatureContext.Provider>
+    </FeatureContext>
   );
 };
 

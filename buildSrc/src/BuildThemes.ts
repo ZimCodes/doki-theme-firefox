@@ -185,7 +185,7 @@ function resolveStickerPath(themeDefinitionPath: string, sticker: string) {
     path.resolve(themeDefinitionPath, ".."),
     sticker
   );
-  return stickerPath.substr(
+  return stickerPath.substring(
     masterThemeDefinitionDirectoryPath.length + "/definitions".length
   );
 }

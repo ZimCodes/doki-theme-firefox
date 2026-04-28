@@ -10,6 +10,7 @@ import { FeatureSetEventPayload, PluginEventTypes } from "../Events";
 
 export interface PluginFeatures {
   showWidget: boolean;
+  isDiscreet: boolean;
 }
 
 export interface PluginFeatureContext {
@@ -20,6 +21,7 @@ export interface PluginFeatureContext {
 
 export const defaultFeatures = {
   showWidget: true,
+  isDiscreet: false
 };
 
 export const FeatureContextContentScript =
@@ -45,6 +47,7 @@ const FeatureProvider: FC<PropsWithChildren<Props>> = ({ children }) => {
     pluginSettings.getAll().then((setting) => {
       setFeatures({
         showWidget: setting.showWidget,
+        isDiscreet: setting.isDiscreet,
       });
       setInitialized(true);
 
@@ -71,9 +74,9 @@ const FeatureProvider: FC<PropsWithChildren<Props>> = ({ children }) => {
   );
 
   return (
-    <FeatureContextContentScript.Provider value={featureContext}>
+    <FeatureContextContentScript value={featureContext}>
       {children}
-    </FeatureContextContentScript.Provider>
+    </FeatureContextContentScript>
   );
 };
 

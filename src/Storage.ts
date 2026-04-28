@@ -28,6 +28,7 @@ export interface PluginLocalStorage extends Options {
   injectSelection: boolean;
   injectScrollbars: boolean;
   hasMigrated: boolean;
+  isDiscreet: boolean;
 }
 
 class LocalOptions<T extends Options> {
@@ -68,5 +69,6 @@ export const pluginSettings = new LocalOptions<PluginLocalStorage>({
     injectSelection: false,
     injectScrollbars: false,
     hasMigrated: false,
+    isDiscreet: false
   },
 });

@@ -27,25 +27,29 @@ function setThemedAboutIcon(currentTheme: DokiTheme) {
   });
 }
 
-const SearchWidget = ({ theme }: { theme: DokiTheme }) => {
+const SearchWidget = ({ theme, isDiscreet }: { theme: DokiTheme, isDiscreet: boolean }) => {
   const logoElement = useRef(null);
   useEffect(() => {
-    if (logoElement) {
+    if (logoElement && !isDiscreet) {
       setThemedAboutIcon(theme);
     }
-  }, [theme, logoElement]);
+  }, [theme, logoElement,isDiscreet]);
 
   const searchElement = useRef(null);
   useEffect(() => {
-    if (searchElement) {
+    if (searchElement && !isDiscreet) {
       setThemedSearchInputIcon(theme);
     }
-  }, [theme, searchElement]);
+  }, [theme, searchElement,isDiscreet]);
 
   const [query, setQuery] = useState("");
 
   const conductSearch = () => {
     browser.tabs.getCurrent().then((tab) => {
+      if (tab?.id == null) {
+        return;
+      }
+
       return browser.search.search({
         query,
         tabId: tab.id,
@@ -64,12 +68,12 @@ const SearchWidget = ({ theme }: { theme: DokiTheme }) => {
         }
       });
   };
-
+  const searchTitle = isDiscreet ? "Homepage" : "Doki Theme";
   return (
     <main>
       <div className="logo-and-wordmark">
         <div ref={logoElement} className="logo"></div>
-        <div className="wordmark">Doki Theme</div>
+        <div className="wordmark">{searchTitle}</div>
       </div>
       <div className="search-inner-wrapper">
         <input

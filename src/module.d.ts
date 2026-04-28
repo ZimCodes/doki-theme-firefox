@@ -6,3 +6,5 @@ declare namespace browser._manifest {
     };
   }
 }
+
+declare module "*.css";

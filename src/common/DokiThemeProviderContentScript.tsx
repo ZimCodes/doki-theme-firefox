@@ -64,9 +64,9 @@ const DokiThemeProviderContentScript: FC<PropsWithChildren<Props>> = ({
   );
 
   return (
-    <ThemeContextContentScript.Provider value={themeContext}>
+    <ThemeContextContentScript value={themeContext}>
       {children}
-    </ThemeContextContentScript.Provider>
+    </ThemeContextContentScript>
   );
 };
 

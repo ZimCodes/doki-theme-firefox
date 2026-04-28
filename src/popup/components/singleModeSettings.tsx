@@ -16,6 +16,7 @@ interface FormValues {
 }
 
 const SingleModeSettings = () => {
+  const dokiThemeCtx = React.useContext(ThemeContext);
   const options: CharacterOption[] = useMemo(() => {
     const characterOptions = characterThemes.map((characterTheme) => ({
       value: characterTheme,
@@ -55,77 +56,70 @@ const SingleModeSettings = () => {
       });
     };
 
-  return (
-    <>
-      <ThemeContext.Consumer>
-        {({ theme, setTheme, isInitialized }) => {
-          if (!isInitialized) return <></>;
+  let context = <></>;
+  if (dokiThemeCtx.isInitialized){
+    const initialValues: FormValues = {
+      selected: {
+        character: findCharacter(dokiThemeCtx.theme),
+        contentType: dokiThemeCtx.theme.activeContent,
+        selectedTheme: dokiThemeCtx.theme.dokiTheme,
+      },
+    };
+    context = (
+      <div>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={(values, formikHelpers) => {
+            dokiThemeCtx.setTheme({
+              selectedTheme: values.selected.selectedTheme,
+              contentType: values.selected.contentType,
+            });
 
-          const initialValues: FormValues = {
-            selected: {
-              character: findCharacter(theme),
-              contentType: theme.activeContent,
-              selectedTheme: theme.dokiTheme,
-            },
-          };
-
-          return (
-            <div>
-              <Formik
-                initialValues={initialValues}
-                onSubmit={(values, formikHelpers) => {
-                  setTheme({
-                    selectedTheme: values.selected.selectedTheme,
-                    contentType: values.selected.contentType,
-                  });
-
-                  formikHelpers.resetForm({
-                    values: values,
-                  });
-                }}
+            formikHelpers.resetForm({
+              values: values,
+            });
+          }}
+        >
+          {({
+              values,
+              handleSubmit,
+              isSubmitting,
+              dirty,
+              setFieldValue,
+              resetForm,
+            }) => (
+            <>
+              <DokiButton
+                style={{ margin: "1rem 0" }}
+                onClick={pickRandomTheme(resetForm, dokiThemeCtx.setTheme)}
               >
-                {({
-                  values,
-                  handleSubmit,
-                  isSubmitting,
-                  dirty,
-                  setFieldValue,
-                  resetForm,
-                }) => (
-                  <>
-                    <DokiButton
-                      style={{ margin: "1rem 0" }}
-                      onClick={pickRandomTheme(resetForm, setTheme)}
-                    >
-                      Choose Random Theme
-                    </DokiButton>
-                    <DokiThemeComponent
-                      values={values}
-                      options={options}
-                      prefix={"selected"}
-                      setFieldValue={setFieldValue}
-                    />
-                    <form onSubmit={handleSubmit}>
-                      <DokiButton
-                        variant={"primary"}
-                        style={{
-                          marginTop: "1rem",
-                        }}
-                        type="submit"
-                        disabled={isSubmitting || !dirty}
-                      >
-                        Apply
-                      </DokiButton>
-                    </form>
-                  </>
-                )}
-              </Formik>
-            </div>
-          );
-        }}
-      </ThemeContext.Consumer>
-    </>
-  );
+                Choose Random Theme
+              </DokiButton>
+              <DokiThemeComponent
+                values={values}
+                options={options}
+                prefix={"selected"}
+                setFieldValue={setFieldValue}
+              />
+              <form onSubmit={handleSubmit}>
+                <DokiButton
+                  variant={"primary"}
+                  style={{
+                    marginTop: "1rem",
+                  }}
+                  type="submit"
+                  disabled={isSubmitting || !dirty}
+                >
+                  Apply
+                </DokiButton>
+              </form>
+            </>
+          )}
+        </Formik>
+      </div>
+    );
+  }
+  return context;
 };
 
 export default SingleModeSettings;

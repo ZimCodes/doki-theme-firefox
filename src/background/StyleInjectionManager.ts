@@ -1,8 +1,4 @@
-import {
-  FeatureSetEventPayload,
-  PluginEvent,
-  PluginEventTypes,
-} from "../Events";
+import { FeatureSetEventPayload, PluginEvent, PluginEventTypes } from "../Events";
 import { pluginSettings } from "../Storage";
 import RegisteredContentScript = browser.contentScripts.RegisteredContentScript;
 
@@ -17,6 +13,8 @@ export class StyleInjectionManager {
   private async handleMessage(event: PluginEvent<any>) {
     if (event.type === PluginEventTypes.FEATURE_SET) {
       await this.updateFeatureSet(event);
+    }else if (event.type === PluginEventTypes.DISCREET_MODE_SET) {
+      await reloadTabs({});
     }
   }
 

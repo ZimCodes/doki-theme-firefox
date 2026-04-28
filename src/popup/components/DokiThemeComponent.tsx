@@ -3,6 +3,7 @@ import ThemedSelect from "./ThemedSelect";
 import { CharacterTheme, ContentType, DokiTheme } from "../../common/DokiTheme";
 import { ThemeContext } from "../../common/DokiThemeProvider";
 import DokiRadioButton from "./DokiRadioButton";
+import { SingleValue } from "react-select";
 
 function createThemeVariantName(theme: DokiTheme) {
   const trimmedVariant = theme.name
@@ -13,6 +14,7 @@ function createThemeVariantName(theme: DokiTheme) {
 }
 
 type labelType = { label: string; value: DokiTheme };
+type ThemeOption = { label: string; value: DokiTheme };
 
 function getThemeSelector(
   values: any,
@@ -39,8 +41,8 @@ function getThemeSelector(
             value: values[prefix].selectedTheme,
             label: createThemeVariantName(values[prefix].selectedTheme),
           }}
-          onChange={(selectedCharacter) =>
-            setFieldValue(`${prefix}.selectedTheme`, selectedCharacter!.value)
+          onChange={(selectedTheme: SingleValue<ThemeOption>) =>
+            setFieldValue(`${prefix}.selectedTheme`, selectedTheme!.value)
           }
         />
       </label>
@@ -63,76 +65,73 @@ const DokiThemeComponent: FC<Props> = ({
   prefix,
   options,
 }) => {
+  const dokiThemeCtx = React.useContext(ThemeContext);
   return (
-    <ThemeContext.Consumer>
-      {({ theme }) => (
-        <div>
-          <label>
-            <span style={{ color: theme.colors.infoForeground }}>
+    <div>
+      <label>
+            <span style={{ color: dokiThemeCtx.theme.colors.infoForeground }}>
               Choose a character
             </span>{" "}
-            <br style={{ marginBottom: "0.5rem" }} />
-            <ThemedSelect
-              options={options}
-              value={{
-                label: values[prefix].character.name,
-                value: values[prefix].character,
-              }}
-              onChange={(selectedCharacter) => {
-                const characterValue = selectedCharacter!.value;
-                setFieldValue(
-                  `${prefix}.selectedTheme`,
-                  characterValue.themes[0]
-                );
-                return setFieldValue(`${prefix}.character`, characterValue);
-              }}
-            />
-          </label>
+        <br style={{ marginBottom: "0.5rem" }} />
+        <ThemedSelect
+          options={options}
+          value={{
+            label: values[prefix].character.name,
+            value: values[prefix].character,
+          }}
+          onChange={(selectedCharacter: SingleValue<CharacterOption>) => {
+            const characterValue = selectedCharacter!.value;
+            setFieldValue(
+              `${prefix}.selectedTheme`,
+              characterValue.themes[0]
+            );
+            return setFieldValue(`${prefix}.character`, characterValue);
+          }}
+        />
+      </label>
 
-          {values[prefix].character.hasMultipleThemes &&
-            getThemeSelector(values, setFieldValue, prefix, theme)}
+      {values[prefix].character.hasMultipleThemes &&
+        getThemeSelector(values, setFieldValue, prefix, dokiThemeCtx.theme)}
 
-          {values[prefix].character.hasSecondaryContent && (
-            <>
-              <div style={{ margin: "1rem 0 0.5rem 0" }} id="contentTypeGroup">
-                <span style={{ color: theme.colors.infoForeground }}>
+      {values[prefix].character.hasSecondaryContent && (
+        <>
+          <div style={{ margin: "1rem 0 0.5rem 0" }} id="contentTypeGroup">
+                <span style={{ color: dokiThemeCtx.theme.colors.infoForeground }}>
                   Content Type
                 </span>
-                <br style={{ marginBottom: "0.5rem" }} />
-                <div role="group" aria-labelledby="contentTypeGroup">
-                  <DokiRadioButton
-                    type="radio"
-                    name={`${prefix}.contentType`}
-                    value={ContentType.PRIMARY}
-                    onChange={() => {
-                      setFieldValue(
-                        `${prefix}.contentType`,
-                        ContentType.PRIMARY
-                      );
-                    }}
-                  >
-                    Primary
-                  </DokiRadioButton>
-                  <DokiRadioButton
-                    type="radio"
-                    name={`${prefix}.contentType`}
-                    value={ContentType.SECONDARY}
-                    onChange={() => {
-                      setFieldValue(
-                        `${prefix}.contentType`,
-                        ContentType.SECONDARY
-                      );
-                    }}
-                  >
-                    Secondary
-                  </DokiRadioButton>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
+            <br style={{ marginBottom: "0.5rem" }} />
+            <div role="group" aria-labelledby="contentTypeGroup">
+              <DokiRadioButton
+                type="radio"
+                name={`${prefix}.contentType`}
+                value={ContentType.PRIMARY}
+                onChange={() => {
+                  setFieldValue(
+                    `${prefix}.contentType`,
+                    ContentType.PRIMARY
+                  );
+                }}
+              >
+                Primary
+              </DokiRadioButton>
+              <DokiRadioButton
+                type="radio"
+                name={`${prefix}.contentType`}
+                value={ContentType.SECONDARY}
+                onChange={() => {
+                  setFieldValue(
+                    `${prefix}.contentType`,
+                    ContentType.SECONDARY
+                  );
+                }}
+              >
+                Secondary
+              </DokiRadioButton>
+            </div>
+          </div>
+        </>
       )}
-    </ThemeContext.Consumer>
+    </div>
   );
 };
 

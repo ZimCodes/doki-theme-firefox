@@ -12,6 +12,7 @@ export enum PluginEventTypes {
   CURRENT_THEME_UPDATED,
   CONTENT_SCRIPT_INJECTED,
   BROWSER_SETTINGS_GRANTED,
+  DISCREET_MODE_SET
 }
 
 export interface PluginEvent<T> {
@@ -34,6 +35,10 @@ export interface FeatureSetEventPayload {
 
 export interface ModeSetEventPayload {
   mode: PluginMode;
+}
+
+export interface DiscreetModePayload {
+  isDiscreet: boolean
 }
 
 export interface TabAttachedEventPayload {

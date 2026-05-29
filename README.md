@@ -90,6 +90,8 @@ Every new tab will be themed randomly by a chosen theme from your selected theme
 
 ## Plugin Features
 
+**Discreet Mode**: removes doki logos and doki characters. Keeps the doki logo for toolbar, though.
+
 **Show Search Widget**: controls the presence of the search widget on the `New Tab` page.
 
 ![Search Widget](./readmeAssets/screens/search_widget.png)
@@ -105,8 +107,6 @@ This way the plugin can manually inject styles to match your active tab's theme.
 theme.
 
 **Inject Themed Scrollbar**: injects styles to change the scrollbar to match the active tab's theme.
-
-**Discreet Mode**: removes doki logos and doki characters. Keeps the doki logo for toolbar, though.
 
 # Miscellaneous
 
